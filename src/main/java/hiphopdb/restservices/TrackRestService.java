@@ -66,7 +66,7 @@ public class TrackRestService {
 	}
 	
 	@GET
-	@Path("/{id}/top")
+	@Path("artist/{id}/top")
 	@Produces("application/json")
 	public String getTopByArtistID(@PathParam("id")int id){
 			JsonArrayBuilder jab = Json.createArrayBuilder();
@@ -79,7 +79,7 @@ public class TrackRestService {
 		        }
 		    });
 			list=Lists.reverse(list);
-			List<Track> result = new ArrayList<Track>(list.subList(0,5));
+			List<Track> result = new ArrayList<Track>(list.subList(0,3));
 			for (Track t:result) {
 				jab.add(createJson(t));
 			}
@@ -108,10 +108,15 @@ public class TrackRestService {
 		}
 		JsonObjectBuilder job = Json.createObjectBuilder();
 		JsonObjectBuilder jobcom = Json.createObjectBuilder();
-		SimpleDateFormat dt1 = new SimpleDateFormat("dd-mm-yyyy");
+		String artiststring="";
+		for (Artist a:t.getArtists()) {
+			artiststring+=a.getName()+",";
+		}
+		artiststring = artiststring.substring(0, artiststring.length() - 1);
 		job.add("id", t.getId());
 		job.add("title", t.getTitle());
 		job.add("artistnum",t.getArtists().size());
+		job.add("artiststring", artiststring);
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 		for (Artist a:t.getArtists()) {
 			jobcom.add("id", a.getId());
@@ -120,8 +125,9 @@ public class TrackRestService {
 		}
 		job.add("artists", jab);
 		job.add("streams", t.getStreams());
+		job.add("albumid", al.getId());
 		job.add("album", al.getTitle());
-		job.add("length", secondsToString(t.getLength()));
+		job.add("duration", secondsToString(t.getLength()));
 		job.add("url", t.getUrl());
 
 		/*
