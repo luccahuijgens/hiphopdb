@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>HipHopDB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<link rel='stylesheet' href='css/mediaplayer.css'>
+<link rel='stylesheet' href='css/index.css'>
+<link rel='stylesheet' href='http://cdn.plyr.io/3.3.21/plyr.css'>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<style>
+.artistimage{
+border-radius: 50%;
+}
+.w3-third{
+text-align:center !important;
+width:230px !important;
+margin:16px !important;
+max-width:230px !important;
+height:230px;
+}
+.w3-third:hover{
+filter:brightness(85%);
+cursor:pointer;
+}
+.w3-third p{
+width:200px;
+}
+body {
+	font-family: "Lato", sans-serif;
+	color: rgba(255, 255, 255, 0.8);
+	background-image:url('https://images.wallpaperscraft.com/image/people_hands_concert_music_crowd_80452_1920x1080.jpg');
+	  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+div.sticky {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	bottom: 0;
+}
+</style>
+</head>
+<body onload=initialize('http://localhost:8080/hiphopdb/restservices/tracks/artist/1')>
+
+
+	<!-- 	Navbar -->
+	<div class="w3-top">
+		<div class="w3-bar w3-black w3-card">
+			<a
+				class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+				href="javascript:void(0)" onclick="myFunction()"
+				title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a> <a
+				href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a> <a
+				href="/hiphopdb/browse.html"
+				class="w3-bar-item w3-button w3-padding-large w3-hide-small">BROWSE</a>
+			<a href="/hiphopdb/myplaylists.html"
+				class="w3-bar-item w3-button w3-padding-large w3-hide-small">MY PLAYLISTS</a>
+		</div>
+	</div>
+
+	<!-- 	Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+	<div id="navDemo"
+		class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top"
+		style="margin-top: 46px">
+		<a href="#band" class="w3-bar-item w3-button w3-padding-large"
+			onclick="myFunction()">BAND</a> <a href="#tour"
+			class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR</a>
+		<a href="#contact" class="w3-bar-item w3-button w3-padding-large"
+			onclick="myFunction()">CONTACT</a> <a href="#"
+			class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a>
+	</div>
+
+	<!-- 	Page content -->
+	<div class="w3-content"
+		style="max-width: 2000px; min-width:450px; margin-top: 46px; margin-left: 15%; margin-right: 15%; padding-bottom: 32px; background-color:#0a1a24; z-index: 2; width: 70%;">
+
+		<!-- 		The Grid -->
+							<h1>
+						&emsp;<b>Recommended for you</b>
+					</h1>
+					<hr>
+		<div class="w3-row-padding"
+			style="padding-bottom: 16px; background-color:#0a1a24;width:90%;padding-left:5%;margin-left:auto;margin-right:auto;">
+			<div class="w3-third" id="band" onclick=window.location='albums/2.html'>
+						<img src=imgs/2.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+			<p>Astroworld</p>
+			</div>
+	<div class="w3-third" id="band" onclick=window.location='albums/1.html'>
+						<img src=imgs/1.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Harvard Dropout</p>
+					</div>
+				<div class="w3-third" id="band" onclick=window.location='artists/13.html'>
+						<img class=artistimage src=imgs/avatar/13.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+			<p>Cardi B</p>
+			</div>
+				<div class="w3-third" id="band" onclick=window.location='artists/18.html'>
+
+						<img class=artistimage src=imgs/avatar/18.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Juice WRLD</p>
+			</div>
+				<div class="w3-third" id="band" onclick=window.location='albums/6.html'>
+						<img src=imgs/6.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Invasion of Privacy</p>
+			</div>
+			<div class="w3-third" id="band" onclick=window.location='albums/3.html'>
+						<img src=imgs/3.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Culture</p>
+					</div>
+							<div class="w3-third" id="band" onclick=window.location='artists/10.html'>
+
+						<img class=artistimage src=imgs/avatar/10.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Lil Pump</p>
+			</div>
+						<div class="w3-third" id="band" onclick=window.location='artists/2.html'>
+
+						<img class=artistimage src=imgs/avatar/2.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Quavo</p>
+			</div>
+		</div>
+		
+		<!-- 		The Grid -->
+							<h1>
+						&emsp;<b>Most Popular Albums Today</b>
+					</h1>
+					<hr>
+		<div class="w3-row-padding"
+			style="padding-bottom: 16px; background-color:#0a1a24;width:90%;padding-left:5%;margin-left:auto;margin-right:auto;">
+			<div class="w3-third" id="band" onclick=window.location='albums/2.html'>
+						<img src=imgs/2.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+			<p>Astroworld</p>
+			</div>
+	<div class="w3-third" id="band" onclick=window.location='albums/1.html'>
+						<img src=imgs/1.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Harvard Dropout</p>
+					</div>
+				<div class="w3-third" id="band" onclick=window.location='albums/7.html'>
+
+						<img src=imgs/7.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Luv is Rage 2</p>
+			</div>
+				<div class="w3-third" id="band" onclick=window.location='albums/6.html'>
+						<img src=imgs/6.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Invasion of Privacy</p>
+			</div>
+		</div>
+
+	<!-- 		The Grid -->
+							<h1>
+						&emsp;<b>Most Played Artists Today</b>
+					</h1>
+					<hr>
+		<div class="w3-row-padding"
+			style="padding-bottom: 16px; background-color:#0a1a24;width:90%;padding-left:5%;margin-left:auto;margin-right:auto;">
+			<div class="w3-third" id="band" onclick=window.location='artists/1.html' >
+						<img class=artistimage src=imgs/avatar/1.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+			<p>Travis Scott</p>
+			</div>
+	<div class="w3-third" id="band" onclick=window.location='artists/13.html' >
+						<img class=artistimage src=imgs/avatar/13.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Cardi B</p>
+					</div>
+				<div class="w3-third" id="band" onclick=window.location='artists/4.html' >
+
+						<img class=artistimage src=imgs/avatar/4.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Lil Uzi Vert</p>
+			</div>
+				<div class="w3-third" id="band" onclick=window.location='artists/5.html' >
+						<img class=artistimage src=imgs/avatar/5.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Future</p>
+			</div>
+		</div>
+		
+		<!-- 	Albums -->
+	<script
+		src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<script
+		src='http://cdnjs.cloudflare.com/ajax/libs/html5media/1.1.8/html5media.min.js'></script>
+	<script
+		src='http://cdnjs.cloudflare.com/ajax/libs/plyr/3.3.21/plyr.min.js'></script>
+	<script src="js/audioplayer.js"></script>
+
+<script>
+loadArtistHeader(1);
+loadTopTracks(1);
+loadAlbums(1);
+
+function loadArtistHeader(id){
+$.getJSON("http://localhost:8080/hiphopdb/restservices/artists/"+id, function (artist){
+$('#artistheader').append(
+		"<img src=imgs/banner/"+id+".jpg style=width:100%;max-height:300px;>"+
+		"<div class=\"w3-display-bottomleft w3-container w3-text-white w3-padding-32 w3-hide-small\">"+
+		"<h1><b>"+artist.name+"</b></h1></div>"
+		);
+document.title="HipHopDB - "+artist.name;
+});
+}
+
+function loadTopTracks(id){
+var firstalbum=0;
+$.getJSON("http://localhost:8080/hiphopdb/restservices/albums/"+id+"/albums", function(albums){
+	firstalbum=$(albums).first().id*5-1;
+});
+$.getJSON("http://localhost:8080/hiphopdb/restservices/tracks/artist/"+id+"/top",function(tracks){
+$.each(tracks,function(i, track){
+			$('#populairTrackTable').append("<tr onclick=playTrackByID("+track.id+")>"+
+			"<td><img style=width:35px;height:35px; src=imgs/"+track.albumid+".jpg></td>"+
+			"<td>"+track.title+"</td>"+
+			"<td>"+track.streams+"</td></tr>");
+	});
+});
+}
+
+function loadAlbums(id){
+var albumint=0;
+	$.getJSON("http://localhost:8080/hiphopdb/restservices/albums/"+id+"/albums", function(albums){
+		$.each(albums, function (i,album){
+			albumint=album.id;
+$('#albumlist').append(
+"<div id=albumcontainer"+i+" class=albumcontainer style=background-color:#0a1a24>"+
+"<div class=albuminfo style=padding:16px;>"+
+"<img src=imgs/"+album.id+".jpg"+
+" style=width:25%;height:25%;float:left;padding:8px; />"+album.releaseyear+"<br>"+
+"<h1 style=float:left;>"+
+	"<b>"+album.title+"</b></h1></div>"+
+						"<table id=tracklist"+albumint+"><thead><tr>"+
+								"<th>#</th>"+
+								"<th>Title</th>"+
+								"<th>Streams</th>"+
+								"</tr></thead><tbody></tbody></table></div></div><br>");
+								
+$.getJSON("http://localhost:8080/hiphopdb/restservices/tracks/album/"+album.id, function(tracks){
+	$.each(tracks, function (i,track){		
+								$('#tracklist'+track.albumid).append("<tr onclick=playTrackByID("+track.id+")>"+
+									"<td>"+(i+1)+"</td>"+
+									"<td>"+track.title+"</td>"+
+									"<td>"+track.streams+"</td></tr>");
+	});
+});
+
+
+		});
+	});
+}
+</script>
+</body>
+</html>

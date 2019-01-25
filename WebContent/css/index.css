@@ -1,0 +1,36 @@
+tr{
+	background-color:#23313a;
+}
+tbody tr:hover {
+	background-color:#dcdcdc;
+	cursor:pointer;
+	filter:brightness(85%);
+}
+#populairTrackTable tr:hover {
+	background-color:#dcdcdc;
+	cursor:pointer;
+	filter:brightness(85%);
+}
+tbody th:hover{
+	background-color:none !important;
+	cursor:default !important;
+}
+#latestrlbody:hover{
+	background-color:#dcdcdc;
+	cursor:pointer;
+	filter:brightness(85%);
+}
+
+#artistbannerimage{
+
+&:before {
+ content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+background-image:linear-gradient(rgba(255,0,0,0),black);
+opacity:.6;
+}
+}

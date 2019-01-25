@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>HipHopDB - My Playlists</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<link rel='stylesheet' href='css/mediaplayer.css'>
+<link rel='stylesheet' href='css/index.css'>
+<link rel='stylesheet' href='http://cdn.plyr.io/3.3.21/plyr.css'>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<style>
+.artistimage{
+border-radius: 50%;
+}
+.w3-third{
+text-align:center !important;
+width:230px !important;
+margin:16px !important;
+max-width:230px !important;
+height:230px;
+}
+.w3-third:hover{
+filter:brightness(85%);
+cursor:pointer;
+}
+.w3-third p{
+width:200px;
+}
+body {
+	font-family: "Lato", sans-serif;
+	color: rgba(255, 255, 255, 0.8);
+	background-image:url('https://images.wallpaperscraft.com/image/people_hands_concert_music_crowd_80452_1920x1080.jpg');
+	  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+div.sticky {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	bottom: 0;
+}
+</style>
+</head>
+<body onload=initialize('http://localhost:8080/hiphopdb/restservices/tracks/artist/1')>
+
+
+	<!-- 	Navbar -->
+	<div class="w3-top">
+		<div class="w3-bar w3-black w3-card">
+			<a
+				class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+				href="javascript:void(0)" onclick="myFunction()"
+				title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a> <a
+				href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a> <a
+				href="/hiphopdb/browse.html"
+				class="w3-bar-item w3-button w3-padding-large w3-hide-small">BROWSE</a>
+			<a href="/hiphopdb/myplaylists.html"
+				class="w3-bar-item w3-button w3-padding-large w3-hide-small">MY PLAYLISTS</a>
+		</div>
+	</div>
+
+	<!-- 	Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+	<div id="navDemo"
+		class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top"
+		style="margin-top: 46px">
+		<a href="#band" class="w3-bar-item w3-button w3-padding-large"
+			onclick="myFunction()">BAND</a> <a href="#tour"
+			class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR</a>
+		<a href="#contact" class="w3-bar-item w3-button w3-padding-large"
+			onclick="myFunction()">CONTACT</a> <a href="#"
+			class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a>
+	</div>
+
+	<!-- 	Page content -->
+	<div class="w3-content"
+		style="max-width: 2000px; min-width:450px; min-height:742px;margin-top: 46px; margin-left: 15%; margin-right: 15%; padding-bottom: 32px; background-color:#0a1a24; z-index: 2; width: 70%;">
+		
+		<!-- 		The Grid -->
+							<h1>
+						&emsp;<b>My Playlists</b>
+					</h1>
+					<hr>
+		<div class="w3-row-padding"
+			style="padding-bottom: 16px; background-color:#0a1a24;width:90%;padding-left:5%;margin-left:auto;margin-right:auto;">
+				<div class="w3-third" id="band" onclick=window.location='playlists/3.html'>
+
+						<img src=imgs/playlist/3.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>fuck school gave myself early dismissal</p>
+			</div>
+				<div class="w3-third" id="band" onclick=window.location='playlists/4.html'>
+						<img src=imgs/playlist/4.jpg
+							style="width: 200px; height: 200px; float: left;" /><br>
+										<p>Chill vibes</p>
+			</div>
+		</div>
+		
+		<!-- 	Albums -->
+	<script
+		src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<script
+		src='http://cdnjs.cloudflare.com/ajax/libs/html5media/1.1.8/html5media.min.js'></script>
+	<script
+		src='http://cdnjs.cloudflare.com/ajax/libs/plyr/3.3.21/plyr.min.js'></script>
+	<script src="js/audioplayer.js"></script>
+
+<script>
+</script>
+</body>
+</html>
