@@ -8,7 +8,7 @@
 
 jQuery(function ($) {
     tracks =[]
-    $.getJSON("http://localhost:8080/hiphopdb/restservices/tracks",function(trackdata){
+    $.getJSON("http://localhost:8081/hiphopdb/restservices/tracks",function(trackdata){
     	$.each(trackdata,function(i,data){
     		tracks.push(data)
     	});

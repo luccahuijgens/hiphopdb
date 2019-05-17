@@ -20,45 +20,46 @@ import hiphopdb.database.Track;
 @Path("/albums")
 public class AlbumRestService {
 	HipHopService service = ServiceProvider.getService();
-	
+
 	@GET
 	@Produces("application/json")
 	public String getAlbums() {
 		JsonArrayBuilder jab = Json.createArrayBuilder();
-		for (Album a:service.getAlbums()) {
+		for (Album a : service.getAlbums()) {
 			jab.add(createJson(a));
 		}
 		return jab.build().toString();
 	}
-	
+
 	@GET
 	@Path("{id}")
 	@Produces("application/json")
-	public String getAlbumById(@PathParam("id")int id) {
+	public String getAlbumById(@PathParam("id") int id) {
 		return createJson(service.getAlbumByID(id)).build().toString();
 	}
-	
+
 	@GET
 	@Path("{id}/albums")
 	@Produces("application/json")
-		public String getAlbumsByArtist(@PathParam("id")int id){	
+	public String getAlbumsByArtist(@PathParam("id") int id) {
 		JsonArrayBuilder jab = Json.createArrayBuilder();
-			for (Album al:service.getAlbumsByArtist(id)) {
-				jab.add(createJson(al));
-			}
-			return (jab.build().toString());
+		for (Album al : service.getAlbumsByArtist(id)) {
+			jab.add(createJson(al));
 		}
+		return (jab.build().toString());
+	}
+
 	@GET
 	@Path("{id}/latest")
 	@Produces("application/json")
-		public String getLatestReleaseByArtist(@PathParam("id")int id){	
+	public String getLatestReleaseByArtist(@PathParam("id") int id) {
 		JsonArrayBuilder jab = Json.createArrayBuilder();
-			//for (Album al:service.getAlbumsByArtist(id)) {
-				//jab.add(createJson(al));
-			//}
+		// for (Album al:service.getAlbumsByArtist(id)) {
+		// jab.add(createJson(al));
+		// }
 		return (jab.build().toString());
-		}
-	
+	}
+
 	public JsonObjectBuilder createJson(Album al) {
 		JsonObjectBuilder job = Json.createObjectBuilder();
 		JsonObjectBuilder jobcom = Json.createObjectBuilder();
@@ -66,9 +67,9 @@ public class AlbumRestService {
 		SimpleDateFormat dt2 = new SimpleDateFormat("yyyy");
 		job.add("id", al.getId());
 		job.add("title", al.getTitle());
-		job.add("artistnum",al.getArtists().size());
+		job.add("artistnum", al.getArtists().size());
 		JsonArrayBuilder jab = Json.createArrayBuilder();
-		for (Artist a:al.getArtists()) {
+		for (Artist a : al.getArtists()) {
 			jobcom.add("id", a.getId());
 			jobcom.add("name", a.getName());
 			jab.add(jobcom);
@@ -78,5 +79,5 @@ public class AlbumRestService {
 		job.add("releasedate", dt1.format(al.getRelease()));
 		job.add("releaseyear", dt2.format(al.getRelease()));
 		return job;
-}
+	}
 }

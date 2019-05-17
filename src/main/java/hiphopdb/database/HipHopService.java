@@ -10,16 +10,24 @@ import java.util.List;
 import jersey.repackaged.com.google.common.collect.Lists;
 
 public class HipHopService {
+private static HipHopService instance;
 private DataSource data;
 private ArrayList<Album>albums;
 private ArrayList<Artist>artists;
 private ArrayList<Playlist>playlists;
 
-public HipHopService() {
+private HipHopService() {
 	   data=new DataSource();
 	   albums=data.GetAlbums();
 	   artists=data.GetArtists();
 	   playlists=data.GetPlaylists();
+}
+
+public static HipHopService getInstance() {
+	if (instance==null) {
+		instance=new HipHopService();
+	}
+	return instance;
 }
 public ArrayList<Album> getAlbums(){
 	return albums;
