@@ -1,6 +1,5 @@
 package hiphopdb.restservices;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -31,9 +30,10 @@ public class TrackRestService {
 	public String TrackList() {
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 		for (Album a : service.getAlbums()) {
-			for (Track t:a.getTracks()) {
-			jab.add(createJson(t));
-		}}
+			for (Track t : a.getTracks()) {
+				jab.add(createJson(t));
+			}
+		}
 		JsonArray array = jab.build();
 
 		return (array.toString());
@@ -45,80 +45,94 @@ public class TrackRestService {
 	public String TrackByID(@PathParam("id") int id) {
 		JsonObjectBuilder job = Json.createObjectBuilder();
 		for (Album a : service.getAlbums()) {
-			for (Track t:a.getTracks()) {
-			if (t.getId()==id) {
-				job=createJson(t);
+			for (Track t : a.getTracks()) {
+				if (t.getId() == id) {
+					job = createJson(t);
+				}
 			}
-		}}
+		}
 		return (job.build().toString());
 	}
-	
+
 	@GET
 	@Path("/album/{id}")
 	@Produces("application/json")
 	public String TracksByAlbumID(@PathParam("id") int id) {
 		JsonArrayBuilder jab = Json.createArrayBuilder();
-		Album a=service.getAlbumByID(id);
-			for (Track t:a.getTracks()) {
+		Album a = service.getAlbumByID(id);
+		for (Track t : a.getTracks()) {
 			jab.add(createJson(t));
 		}
 		return (jab.build().toString());
 	}
-	
+
 	@GET
 	@Path("artist/{id}/top")
 	@Produces("application/json")
-	public String getTopByArtistID(@PathParam("id")int id){
-			JsonArrayBuilder jab = Json.createArrayBuilder();
-			List<Track>list=service.GetTracksByArtist(service.findArtist(id));
-			Collections.sort(list, new Comparator<Track>() {
+	public String getTopByArtistID(@PathParam("id") int id) {
+		JsonArrayBuilder jab = Json.createArrayBuilder();
+		List<Track> list = service.getTracksByArtist(service.findArtist(id));
+		Collections.sort(list, new Comparator<Track>() {
 
-		        public int compare(Track o1, Track o2) {
-		            // compare two instance of `Score` and return `int` as result.
-		            return Double.compare(o1.getStreams(), o2.getStreams());
-		        }
-		    });
-			list=Lists.reverse(list);
-			List<Track> result = new ArrayList<Track>(list.subList(0,3));
-			for (Track t:result) {
-				jab.add(createJson(t));
+			public int compare(Track o1, Track o2) {
+				// compare two instance of `Score` and return `int` as result.
+				return Double.compare(o1.getStreams(), o2.getStreams());
 			}
-				return (jab.build().toString());
-			}
+		});
+		list = Lists.reverse(list);
+		List<Track> result = new ArrayList<Track>(list.subList(0, 3));
+		for (Track t : result) {
+			jab.add(createJson(t));
+		}
+		return (jab.build().toString());
+	}
+
+	@GET
+	@Path("artist/{id}")
+	@Produces("application/json")
+	public String getTracksByArtist(@PathParam("id") int id) {
+		JsonArrayBuilder jab = Json.createArrayBuilder();
+		List<Track> list = service.getTracksByArtist(service.findArtist(id));
+		for (Track t : list) {
+			jab.add(createJson(t));
+		}
+		return (jab.build().toString());
+	}
+
 	@GET
 	@Path("/playlist/{id}")
 	@Produces("application/json")
-	public String getTracksByPlaylist(@PathParam("id")int id){
-			JsonArrayBuilder jab = Json.createArrayBuilder();
-			ArrayList<Track>tracks=service.getTracksByPlaylistID(id);
-			for (Track t:tracks) {
-				jab.add(createJson(t));
-			}
-				return (jab.build().toString());
-			}
-	
+	public String getTracksByPlaylist(@PathParam("id") int id) {
+		JsonArrayBuilder jab = Json.createArrayBuilder();
+		ArrayList<Track> tracks = new ArrayList<>(service.getTracksByPlaylistID(id));
+		for (Track t : tracks) {
+			jab.add(createJson(t));
+		}
+		return (jab.build().toString());
+	}
+
 	public JsonObjectBuilder createJson(Track t) {
-		Album al=null;
-		for (Album a: service.getAlbums()) {
-			for (Track t2: a.getTracks()) {
+		Album al = null;
+		for (Album a : service.getAlbums()) {
+			for (Track t2 : a.getTracks()) {
 				if (t.equals(t2)) {
-					al=a;
+					al = a;
 				}
 			}
 		}
 		JsonObjectBuilder job = Json.createObjectBuilder();
 		JsonObjectBuilder jobcom = Json.createObjectBuilder();
-		String artiststring="";
-		for (Artist a:t.getArtists()) {
-			artiststring+=a.getName()+",";
+		String artiststring = "";
+		for (Artist a : t.getArtists()) {
+			artiststring += a.getName() + ",";
 		}
 		artiststring = artiststring.substring(0, artiststring.length() - 1);
 		job.add("id", t.getId());
 		job.add("title", t.getTitle());
-		job.add("artistnum",t.getArtists().size());
+		job.add("artistnum", t.getArtists().size());
 		job.add("artiststring", artiststring);
 		JsonArrayBuilder jab = Json.createArrayBuilder();
-		for (Artist a:t.getArtists()) {
+		for (Artist a : t.getArtists()) {
 			jobcom.add("id", a.getId());
 			jobcom.add("name", a.getName());
 			jab.add(jobcom);
@@ -139,7 +153,8 @@ public class TrackRestService {
 		 */
 		return job;
 	}
+
 	private String secondsToString(int pTime) {
-	    return String.format("%02d:%02d", pTime / 60, pTime % 60);
+		return String.format("%02d:%02d", pTime / 60, pTime % 60);
 	}
 }

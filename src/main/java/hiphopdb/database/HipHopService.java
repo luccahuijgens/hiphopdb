@@ -1,16 +1,13 @@
 package hiphopdb.database;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import jersey.repackaged.com.google.common.collect.Lists;
-
 public class HipHopService {
 private static HipHopService instance;
+
 private DataSource data;
 private ArrayList<Album>albums;
 private ArrayList<Artist>artists;
@@ -18,9 +15,9 @@ private ArrayList<Playlist>playlists;
 
 private HipHopService() {
 	   data=new DataSource();
-	   albums=data.GetAlbums();
-	   artists=data.GetArtists();
-	   playlists=data.GetPlaylists();
+	   albums=new ArrayList<>(data.getAlbums());
+	   artists=new ArrayList<>(data.getArtists());
+	   playlists=new ArrayList<>(data.getPlaylists());
 }
 
 public static HipHopService getInstance() {
@@ -29,14 +26,15 @@ public static HipHopService getInstance() {
 	}
 	return instance;
 }
-public ArrayList<Album> getAlbums(){
+
+public List<Album> getAlbums(){
 	return albums;
 }
-public ArrayList<Artist> getArtists(){
+public List<Artist> getArtists(){
 	return artists;
 }
-public ArrayList<Track> GetTracksByArtist(Artist find){
-	ArrayList<Track>tracks=new ArrayList<Track>();
+public List<Track> getTracksByArtist(Artist find){
+	ArrayList<Track>tracks=new ArrayList<>();
 	for (Album a:albums){
 		for (Artist art:a.getArtists()){
 			if (art.equals(find)){
@@ -46,8 +44,8 @@ public ArrayList<Track> GetTracksByArtist(Artist find){
 	}
 	return tracks;
 }
-public ArrayList<Track> getMostPlayed(){
-	ArrayList<Track>tracks=data.getTracks();
+public List<Track> getMostPlayed(){
+	ArrayList<Track>tracks=new ArrayList<>(data.getTracks());
 	Collections.sort(tracks, new Comparator<Track>() {
 
         public int compare(Track o1, Track o2) {
@@ -58,8 +56,8 @@ public ArrayList<Track> getMostPlayed(){
 	Collections.reverse(tracks);
 	return tracks;
 }
-public ArrayList<Track> getMostPlayedByArtist(Artist a){
-	ArrayList<Track>tracks=GetTracksByArtist(a);
+public List<Track> getMostPlayedByArtist(Artist a){
+	ArrayList<Track>tracks=new ArrayList<>(getTracksByArtist(a));
 	Collections.sort(tracks, new Comparator<Track>() {
 
         public int compare(Track o1, Track o2) {
@@ -78,8 +76,8 @@ public Artist findArtist(int id) {
 	}
 	return null;
 }
-public ArrayList<Album> getAlbumsByArtist(int id) {
-	ArrayList<Album>result=new ArrayList<Album>();
+public List<Album> getAlbumsByArtist(int id) {
+	ArrayList<Album>result=new ArrayList<>();
 	Artist a=findArtist(id);
 	for (Album al:albums) {
 		for (Artist art:al.getArtists()) {
@@ -98,8 +96,8 @@ public Album getAlbumByID(int id) {
 	}
 	return null;
 }
-public ArrayList<Playlist> getPlaylists(){
-	ArrayList<Playlist>PL=new ArrayList<Playlist>();
+public List<Playlist> getPlaylists(){
+	ArrayList<Playlist>PL=new ArrayList<>();
 	for (Playlist p:playlists) {
 		PL.add(p);
 	}
@@ -113,13 +111,17 @@ public Playlist findPlaylist(int id) {
 	}
 	return null;
 }
-public ArrayList<Track> getTracksByPlaylistID(int id) {
+public List<Track> getTracksByPlaylistID(int id) {
 	Playlist result=null;
 	for (Playlist p:playlists) {
 		if(p.getId()==id) {
 			result=p;
 		}
 	}
+	if (result!=null) {
 	return result.getTracks();
+	}else {
+		return new ArrayList<Track>();
+	}
 }
 }

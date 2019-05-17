@@ -3,7 +3,6 @@ package hiphopdb.restservices;
 import java.text.SimpleDateFormat;
 
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.GET;
@@ -15,7 +14,6 @@ import hiphopdb.database.Album;
 import hiphopdb.database.Artist;
 import hiphopdb.database.HipHopService;
 import hiphopdb.database.ServiceProvider;
-import hiphopdb.database.Track;
 
 @Path("/albums")
 public class AlbumRestService {
@@ -75,6 +73,12 @@ public class AlbumRestService {
 			jab.add(jobcom);
 		}
 		job.add("artists", jab);
+		String artiststring = "";
+		for (Artist a : al.getArtists()) {
+			artiststring += a.getName() + ",";
+		}
+		artiststring = artiststring.substring(0, artiststring.length() - 1);
+		job.add("artiststring", artiststring);
 		job.add("genre", al.getGenre());
 		job.add("releasedate", dt1.format(al.getRelease()));
 		job.add("releaseyear", dt2.format(al.getRelease()));
