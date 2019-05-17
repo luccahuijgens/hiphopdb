@@ -27,7 +27,7 @@ public class TrackRestService {
 
 	@GET
 	@Produces("application/json")
-	public String TrackList() {
+	public String getTrackList() {
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 		for (Album a : service.getAlbums()) {
 			for (Track t : a.getTracks()) {
@@ -42,7 +42,7 @@ public class TrackRestService {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-	public String TrackByID(@PathParam("id") int id) {
+	public String getTrackByID(@PathParam("id") int id) {
 		JsonObjectBuilder job = Json.createObjectBuilder();
 		for (Album a : service.getAlbums()) {
 			for (Track t : a.getTracks()) {
@@ -57,7 +57,7 @@ public class TrackRestService {
 	@GET
 	@Path("/album/{id}")
 	@Produces("application/json")
-	public String TracksByAlbumID(@PathParam("id") int id) {
+	public String getTracksByAlbumID(@PathParam("id") int id) {
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 		Album a = service.getAlbumByID(id);
 		for (Track t : a.getTracks()) {
@@ -80,7 +80,7 @@ public class TrackRestService {
 			}
 		});
 		list = Lists.reverse(list);
-		List<Track> result = new ArrayList<Track>(list.subList(0, 3));
+		List<Track> result = new ArrayList<>(list.subList(0, 3));
 		for (Track t : result) {
 			jab.add(createJson(t));
 		}

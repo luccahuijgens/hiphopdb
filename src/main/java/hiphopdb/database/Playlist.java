@@ -1,13 +1,14 @@
 package hiphopdb.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Playlist {
 private int id;
 private String title;
 private String author;
 private String description;
-private ArrayList<Track>tracks;
+private List<Track>tracks;
 
 public Playlist(int id, String title, String author, String description) {
 	super();
@@ -15,7 +16,7 @@ public Playlist(int id, String title, String author, String description) {
 	this.title = title;
 	this.author = author;
 	this.description = description;
-	this.tracks=new ArrayList<Track>();
+	this.tracks=new ArrayList<>();
 }
 
 public int getId() {
@@ -50,11 +51,11 @@ public void setDescription(String description) {
 	this.description = description;
 }
 
-public ArrayList<Track> getTracks() {
+public List<Track> getTracks() {
 	return tracks;
 }
 
-public void setTracks(ArrayList<Track> tracks) {
+public void setTracks(List<Track> tracks) {
 	this.tracks = tracks;
 }
 public void addTrack(Track t) {

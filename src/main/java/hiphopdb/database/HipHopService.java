@@ -35,10 +35,10 @@ public List<Artist> getArtists(){
 }
 public List<Track> getTracksByArtist(Artist find){
 	ArrayList<Track>tracks=new ArrayList<>();
-	for (Album a:albums){
-		for (Artist art:a.getArtists()){
-			if (art.equals(find)){
-				tracks.addAll(a.getTracks());
+	for (Album album:albums){
+		for (Artist artist:album.getArtists()){
+			if (artist.equals(find)){
+				tracks.addAll(album.getTracks());
 			}
 		}
 	}
@@ -47,7 +47,6 @@ public List<Track> getTracksByArtist(Artist find){
 public List<Track> getMostPlayed(){
 	ArrayList<Track>tracks=new ArrayList<>(data.getTracks());
 	Collections.sort(tracks, new Comparator<Track>() {
-
         public int compare(Track o1, Track o2) {
             // compare two instance of `Score` and return `int` as result.
             return Integer.compare(o1.getStreams(), o2.getStreams());
@@ -59,7 +58,6 @@ public List<Track> getMostPlayed(){
 public List<Track> getMostPlayedByArtist(Artist a){
 	ArrayList<Track>tracks=new ArrayList<>(getTracksByArtist(a));
 	Collections.sort(tracks, new Comparator<Track>() {
-
         public int compare(Track o1, Track o2) {
             // compare two instance of `Score` and return `int` as result.
             return Integer.compare(o1.getStreams(), o2.getStreams());
@@ -69,53 +67,49 @@ public List<Track> getMostPlayedByArtist(Artist a){
 	return tracks;
 }
 public Artist findArtist(int id) {
-	for (Artist a:artists) {
-		if (a.getId()==id) {
-			return a;
+	for (Artist artist:artists) {
+		if (artist.getId()==id) {
+			return artist;
 		}
 	}
 	return null;
 }
 public List<Album> getAlbumsByArtist(int id) {
 	ArrayList<Album>result=new ArrayList<>();
-	Artist a=findArtist(id);
-	for (Album al:albums) {
-		for (Artist art:al.getArtists()) {
-			if (a.equals(art)) {
-				result.add(al);
+	Artist artist=findArtist(id);
+	for (Album album:albums) {
+		for (Artist albumartist:album.getArtists()) {
+			if (artist.equals(albumartist)) {
+				result.add(album);
 			}
 		}
 	}
 	return result;
 }
 public Album getAlbumByID(int id) {
-	for (Album a:albums) {
-		if (a.getId()==id) {
-			return a;
+	for (Album album:albums) {
+		if (album.getId()==id) {
+			return album;
 		}
 	}
 	return null;
 }
 public List<Playlist> getPlaylists(){
-	ArrayList<Playlist>PL=new ArrayList<>();
-	for (Playlist p:playlists) {
-		PL.add(p);
-	}
-	return PL;
+	return playlists;
 }
 public Playlist findPlaylist(int id) {
-	for (Playlist p:playlists) {
-		if(p.getId()==id) {
-			return p;
+	for (Playlist playlist:playlists) {
+		if(playlist.getId()==id) {
+			return playlist;
 		}
 	}
 	return null;
 }
 public List<Track> getTracksByPlaylistID(int id) {
 	Playlist result=null;
-	for (Playlist p:playlists) {
-		if(p.getId()==id) {
-			result=p;
+	for (Playlist playlist:playlists) {
+		if(playlist.getId()==id) {
+			result=playlist;
 		}
 	}
 	if (result!=null) {

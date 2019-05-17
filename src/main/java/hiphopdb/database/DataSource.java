@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataSource {
-	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+	private SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 	private ArrayList<Album> albums;
 	private ArrayList<Artist> artists;
 	private ArrayList<Playlist> playlists;
@@ -438,7 +438,7 @@ public class DataSource {
 		}
 	}
 
-	public ArrayList<Album> getAlbums() {
+	public List<Album> getAlbums() {
 		return albums;
 	}
 
